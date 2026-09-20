@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TaskQuest — To-Do App by Pooja</title>
+  <meta name="description" content="A client-side task manager built with vanilla JavaScript, featuring full CRUD, localStorage persistence, and state-driven rendering." />
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="todo.css" />
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">Pooja</a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="project.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">
+      <span class="theme-toggle__label">Dark</span>
+      <span class="visually-hidden">theme, press to switch</span>
+    </button>
+  </header>
+
+  <main id="main-content">
+    <section class="section" aria-labelledby="app-heading">
+      <h1 id="app-heading">TaskQuest</h1>
+      <p class="app-intro">
+        A state-driven task manager. Everything you add is saved to your browser automatically —
+        close the tab, come back, and it's still here.
+      </p>
+
+      <div class="todo-app">
+        <!-- CREATE -->
+        <form id="todo-form" class="todo-form" novalidate>
+          <label for="todo-input" class="visually-hidden">New task</label>
+          <input
+            type="text"
+            id="todo-input"
+            name="task"
+            class="todo-form__input"
+            placeholder="What needs doing?"
+            autocomplete="off"
+            maxlength="200"
+            required
+            aria-describedby="todo-input-error"
+          />
+          <button type="submit" class="button button--primary">Add task</button>
+          <p class="error-message" id="todo-input-error" role="alert" hidden>Type a task before adding it.</p>
+        </form>
+
+        <!-- FILTERS -->
+        <div class="todo-toolbar">
+          <div class="filters" role="group" aria-label="Filter tasks">
+            <button type="button" class="filter-btn" data-filter="all" aria-pressed="true">All</button>
+            <button type="button" class="filter-btn" data-filter="active" aria-pressed="false">Active</button>
+            <button type="button" class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+          </div>
+          <p class="todo-count" id="todo-count" role="status" aria-live="polite"></p>
+        </div>
+
+        <!-- READ -->
+        <ul class="todo-list" id="todo-list" aria-labelledby="app-heading"></ul>
+
+        <p class="todo-empty" id="todo-empty" hidden></p>
+
+        <div class="todo-footer">
+          <button type="button" class="button button--ghost" id="clear-completed">Clear completed</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2026 Pooja. Built with vanilla JavaScript.</p>
+    <ul class="socials">
+      <li><a href="https://github.com/pooja-07-alt" target="_blank" rel="noopener">GitHub<span class="visually-hidden"> (opens in new tab)</span></a></li>
+    </ul>
+  </footer>
+
+  <script src="todo.js"></script>
+</body>
+</html>
