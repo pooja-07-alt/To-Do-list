@@ -1,6 +1,4 @@
-// ===============================
-// DOM ELEMENTS
-// ===============================
+
 
 const taskForm = document.getElementById("taskForm");
 const taskInput = document.getElementById("taskInput");
@@ -12,20 +10,11 @@ const clearCompleted = document.getElementById("clearCompleted");
 const filterButtons = document.querySelectorAll(".filter-btn");
 
 
-// ===============================
-// APPLICATION STATE
-// ===============================
-
-// Get saved tasks from localStorage
 
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
 let currentFilter = "all";
 
-
-// ===============================
-// SAVE TASKS
-// ===============================
 
 function saveTasks() {
 
@@ -33,18 +22,12 @@ function saveTasks() {
 
 }
 
-
-// ===============================
-// CREATE TASK
-// ===============================
-
 taskForm.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
     const taskText = taskInput.value.trim();
 
-    // Don't add empty tasks
 
     if (taskText === "") {
         return;
@@ -71,18 +54,15 @@ taskForm.addEventListener("submit", function (event) {
 });
 
 
-// ===============================
-// READ / DISPLAY TASKS
-// ===============================
 
 function renderTasks() {
 
-    // Clear existing list
+  
 
     taskList.innerHTML = "";
 
 
-    // Filter tasks
+
 
     let filteredTasks = tasks;
 
@@ -103,7 +83,7 @@ function renderTasks() {
     }
 
 
-    // Display empty state
+ 
 
     if (filteredTasks.length === 0) {
 
@@ -116,7 +96,7 @@ function renderTasks() {
     }
 
 
-    // Create task elements
+
 
     filteredTasks.forEach(function (task) {
 
@@ -131,7 +111,6 @@ function renderTasks() {
         li.dataset.id = task.id;
 
 
-        // Checkbox
 
         const checkbox = document.createElement("input");
 
@@ -142,8 +121,6 @@ function renderTasks() {
         checkbox.checked = task.completed;
 
 
-        // Task text
-
         const span = document.createElement("span");
 
         span.className = "task-text";
@@ -151,14 +128,12 @@ function renderTasks() {
         span.textContent = task.text;
 
 
-        // Buttons container
 
         const actions = document.createElement("div");
 
         actions.className = "task-actions";
 
 
-        // Edit button
 
         const editButton = document.createElement("button");
 
@@ -169,7 +144,6 @@ function renderTasks() {
         editButton.textContent = "Edit";
 
 
-        // Delete button
 
         const deleteButton = document.createElement("button");
 
@@ -180,7 +154,6 @@ function renderTasks() {
         deleteButton.textContent = "Delete";
 
 
-        // Build task
 
         actions.appendChild(editButton);
 
@@ -202,12 +175,7 @@ function renderTasks() {
 }
 
 
-// ===============================
-// EVENT DELEGATION
-// ===============================
 
-// One event listener handles
-// checkbox, edit and delete actions.
 
 taskList.addEventListener("click", function (event) {
 
@@ -222,7 +190,7 @@ taskList.addEventListener("click", function (event) {
     const clickedButton = event.target.closest("button");
 
 
-    // DELETE
+
 
     if (clickedButton && clickedButton.dataset.action === "delete") {
 
@@ -239,7 +207,6 @@ taskList.addEventListener("click", function (event) {
     }
 
 
-    // EDIT
 
     if (clickedButton && clickedButton.dataset.action === "edit") {
 
@@ -266,9 +233,6 @@ taskList.addEventListener("click", function (event) {
 });
 
 
-// ===============================
-// COMPLETE / UNCOMPLETE TASK
-// ===============================
 
 taskList.addEventListener("change", function (event) {
 
@@ -295,15 +259,13 @@ taskList.addEventListener("change", function (event) {
 });
 
 
-// ===============================
-// FILTER TASKS
-// ===============================
+
 
 filterButtons.forEach(function (button) {
 
     button.addEventListener("click", function () {
 
-        // Remove active class
+   
 
         filterButtons.forEach(function (btn) {
 
@@ -311,11 +273,11 @@ filterButtons.forEach(function (button) {
 
         });
 
-        // Add active class to clicked button
+      
 
         button.classList.add("active");
 
-        // Change filter
+
 
         currentFilter = button.dataset.filter;
 
@@ -345,9 +307,7 @@ clearCompleted.addEventListener("click", function () {
 });
 
 
-// ===============================
-// TASK COUNTER
-// ===============================
+
 
 function updateTaskCount() {
 
@@ -372,8 +332,5 @@ function updateTaskCount() {
 }
 
 
-// ===============================
-// INITIAL RENDER
-// ===============================
 
 renderTasks();
