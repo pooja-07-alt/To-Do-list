@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="A simple and interactive To-Do List application">
+    <meta name="keywords" content="todo list, task manager, javascript">
+    <meta name="author" content="Pooja">
+
+    <title>TaskFlow - To-Do List</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="todo-app">
+
+            <header class="app-header">
+                <p class="tag">TASK MANAGER</p>
+                <h1>My Tasks</h1>
+                <p class="subtitle">
+                    Organize your day, one task at a time.
+                </p>
+            </header>
+
+            <!-- Add Task -->
+            <form id="taskForm" class="task-form">
+                <input
+                    type="text"
+                    id="taskInput"
+                    placeholder="What needs to be done?"
+                    aria-label="Enter a new task"
+                    autocomplete="off"
+                >
+
+                <button type="submit" class="add-btn">
+                    Add Task
+                </button>
+            </form>
+
+            <!-- Task Information -->
+            <div class="task-info">
+                <span id="taskCount">0 tasks</span>
+
+                <button id="clearCompleted" class="clear-btn">
+                    Clear completed
+                </button>
+            </div>
+
+            <!-- Filters -->
+            <nav class="filters" aria-label="Task filters">
+
+                <button class="filter-btn active" data-filter="all">
+                    All
+                </button>
+
+                <button class="filter-btn" data-filter="active">
+                    Active
+                </button>
+
+                <button class="filter-btn" data-filter="completed">
+                    Completed
+                </button>
+
+            </nav>
+
+            <!-- Task List -->
+            <ul id="taskList" class="task-list"></ul>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">✓</div>
+                <h2>No tasks yet</h2>
+                <p>Add a task above to get started.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
